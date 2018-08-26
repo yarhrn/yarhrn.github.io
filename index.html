@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-</head>
-<body>
+---
+layout: default
+title: Archive
+---
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+<h1>Archive</h1>
 
-</body>
-</html>
+{% for post in site.posts %}
+
+<div>
+  {{ post.date | date: "%b %-d, %Y" }}
+    »
+  <span class='post-title'>
+    <a href="{{ site.path }}{{ post.url }}">{{ post.title }}</a>
+  </span>
+</div>
+
+{% endfor %}
+
