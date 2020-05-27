@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>Proof of scala type system turing completness - Yaroslav's blog</title>
+   <link rel="stylesheet" type="text/css" href="/css/style.css" >
+   <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="News Feed">
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126582907-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126582907-1');
+</script>
+
+</head>
+<body>
+
+<div class="container">
+<header class="masthead">
+   <h3 class="masthead-title">
+     <div>Yaroslav's blog</a>
+     <small>
+        &nbsp;&nbsp;&nbsp;<a href="/">Archive</a>
+     </small>
+     <small>
+        &nbsp;&nbsp;&nbsp;<a href="/about.html">About</a>
+     </small>
+     <small>
+       &nbsp;&nbsp;&nbsp;<a href="/projects.html">Projects</a>
+     </small>
+      <small>
+       &nbsp;&nbsp;&nbsp;<a href="/talks.html">Talks & Slides</a>
+     </small>
+      <small>
+       &nbsp;&nbsp;&nbsp;<a href="/feed.xml">Feed</a>
+     </small>
+   </h3>
+</header>
+
+<div id="content">
+  <article class='post'>
+  <h1 class='post-title'>Proof of scala type system turing completness</h1>
+  <div class="post-date">May 17, 2020</div>
+  <p>According to Stackoverflow answer:</p>
+<blockquote>
+  <p>It means the type system has enough features in it to represent arbitrary computations.</p>
+</blockquote>
+
+<p>To prove Turing completeness several techniques could be used:</p>
+<ul>
+  <li>implement Turing machine</li>
+  <li>implement SKI combinator calculus</li>
+  <li>implement Rule 110.</li>
+</ul>
+
+<p>Rule 110 is a name of elementary cellular automata.</p>
+
+<p>Let’s imagine we have an infinite array of 1 and 0. There is a pointer that encodes the current position.
+Also, we can access to the left and right elements regarding pointer.
+We can iterate over the array and produce a new array by converting the value in the cell and its two neighbors to 1 or 0.
+That’s it, naive explanation of elementary cellular automata.</p>
+
+<p>Rule 110 is one of 256 possible elementary cellular automata.
+It can be presented as</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>left</th>
+      <th>current</th>
+      <th>right</th>
+      <th>result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This table can be presented as a boolean formula</p>
+<pre><code>(not right and current) or (right and not (left and current))
+</code></pre>
+
+<script src="https://gist.github.com/yarhrn/0a99d216850942f1f63059fcc4b8e32e.js"></script>
+
+<p>Credits:</p>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Rule_110">Rule 110</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Turing_completeness">Turing completeness</a></li>
+  <li><a href="https://apocalisp.wordpress.com/2010/06/08/type-level-programming-in-scala/">Type-level programming</a></li>
+</ul>
+
+</article>
+
+
+</div>
+
+</div><!-- .container -->
+</body>
+</html>

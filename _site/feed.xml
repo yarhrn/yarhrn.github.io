@@ -1,14 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>News 'n' Updates | Yaroslav's blog</title>
-  <link href="http://localhost:4000/feed.xml" rel="self"/>
-  <link href="http://localhost:4000/"/>
-  <updated>2018-09-26T23:22:13+03:00</updated>
-  <id>http://localhost:4000/</id>
+  <link href="http://henrythemes.github.io/jekyll-minimal-theme/feed.xml" rel="self"/>
+  <link href="http://henrythemes.github.io/jekyll-minimal-theme/"/>
+  <updated>2020-05-27T21:55:54+03:00</updated>
+  <id>http://henrythemes.github.io/jekyll-minimal-theme/</id>
   <author>
     <name>Yaroslav Hryniuk</name>
   </author>
   <generator>Jekyll v3.6.2</generator>
 
+  
+  <entry>
+    <title>Proof of scala type system turing completness</title>
+    <link href="http://henrythemes.github.io/jekyll-minimal-theme/scala-type-system-turing-completeness.html"/>
+    <updated>2020-05-17T00:00:00+03:00</updated>
+    <id>http://henrythemes.github.io/jekyll-minimal-theme/scala-type-system-turing-completeness</id>
+    <content type="html">&lt;p&gt;According to Stackoverflow answer:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;It means the type system has enough features in it to represent arbitrary computations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To prove Turing completeness several techniques could be used:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;implement Turing machine&lt;/li&gt;
+  &lt;li&gt;implement SKI combinator calculus&lt;/li&gt;
+  &lt;li&gt;implement Rule 110.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Rule 110 is a name of elementary cellular automata.&lt;/p&gt;
+
+&lt;p&gt;Let’s imagine we have an infinite array of 1 and 0. There is a pointer that encodes the current position.
+Also, we can access to the left and right elements regarding pointer.
+We can iterate over the array and produce a new array by converting the value in the cell and its two neighbors to 1 or 0.
+That’s it, naive explanation of elementary cellular automata.&lt;/p&gt;
+
+&lt;p&gt;Rule 110 is one of 256 possible elementary cellular automata.
+It can be presented as&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;left&lt;/th&gt;
+      &lt;th&gt;current&lt;/th&gt;
+      &lt;th&gt;right&lt;/th&gt;
+      &lt;th&gt;result&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;This table can be presented as a boolean formula&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(not right and current) or (right and not (left and current))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;script src=&quot;https://gist.github.com/yarhrn/0a99d216850942f1f63059fcc4b8e32e.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Credits:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Rule_110&quot;&gt;Rule 110&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Turing_completeness&quot;&gt;Turing completeness&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://apocalisp.wordpress.com/2010/06/08/type-level-programming-in-scala/&quot;&gt;Type-level programming&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   
 </feed>
